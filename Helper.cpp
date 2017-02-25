@@ -101,6 +101,7 @@ int maximum( int a, int b, int c ) { return std::max( std::max(a,b), c ) ; }
 
 void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous> &vb2, std::vector<geeky::Geeky> &vb3, std::vector<choosy::Choosy> &vg1, std::vector<normal::Normal> &vg2, std::vector<desperate::Desperate> &vg3, std::vector <std::pair<std::string, std::string>> &couples)
 {
+
 	std::ifstream ifs;
 	ifs.open("Girls.csv", std::ios::in);
 	while(!ifs.eof())
@@ -130,33 +131,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_attractiveness(), g1->get_attractiveness(), g2->get_attractiveness());
-				if(max == m->get_attractiveness() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_attractiveness() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_attractiveness() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_attractiveness() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_attractiveness() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_attractiveness() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -172,33 +197,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_budget(), g1->get_budget(), g2->get_budget());
-				if(max == m->get_budget() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_budget() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_budget() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_budget() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_budget() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_budget() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -212,33 +261,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_intelligence(), g1->get_intelligence(), g2->get_intelligence());
-				if(max == m->get_intelligence() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_intelligence() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_intelligence() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_intelligence() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_intelligence() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_intelligence() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -262,33 +335,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_attractiveness(), g1->get_attractiveness(), g2->get_attractiveness());
-				if(max == m->get_attractiveness() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_attractiveness() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_attractiveness() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_attractiveness() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_attractiveness() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_attractiveness() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -304,33 +401,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_budget(), g1->get_budget(), g2->get_budget());
-				if(max == m->get_budget() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_budget() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_budget() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_budget() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_budget() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_budget() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -344,33 +465,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_intelligence(), g1->get_intelligence(), g2->get_intelligence());
-				if(max == m->get_intelligence() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_intelligence() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_intelligence() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_intelligence() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_intelligence() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_intelligence() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -381,6 +526,7 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 		else if(type == 3)
 		{
 			std::vector<desperate::Desperate>::iterator c;
+
 			for(c = vg3.begin(); c != vg3.end(); c++)
 			{
 				if(c->getname() == name)
@@ -394,39 +540,63 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_attractiveness() > m->get_attractiveness() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_attractiveness(), g1->get_attractiveness(), g2->get_attractiveness());
-				if(max == m->get_attractiveness() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_attractiveness() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_attractiveness() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_attractiveness() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_attractiveness() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_attractiveness() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g2->getname(), c->getname()));
 				}
-
+				
 
 			}
 			else if(preference == 2)
@@ -436,33 +606,57 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_budget() > m->get_budget() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_budget(), g1->get_budget(), g2->get_budget());
-				if(max == m->get_budget() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_budget() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_budget() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_budget() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_budget() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_budget() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
@@ -476,39 +670,64 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 				for(auto it = vb1.begin(); it != vb1.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						m = it;
+						break;
+					}
+				}
+				for(auto it = vb2.begin(); it != vb2.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g1 = it;
+						break;
+					}
+				}
+				for(auto it = vb3.begin(); it != vb3.end(); it++)
+				{
+					if(it->get_commit_status() == false && it->get_budget() >= budget)
+					{
+						g2 = it;
+						break;
+					}
+				}
+				for(auto it = vb1.begin(); it != vb1.end(); it++)
+				{
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						m = it;
 				}
 				for(auto it = vb2.begin(); it != vb2.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g1 = it;
 				}
 				for(auto it = vb3.begin(); it != vb3.end(); it++)
 				{
-					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() > budget)
+					if(it->get_intelligence() > m->get_intelligence() && it->get_commit_status() == false && it->get_budget() >= budget)
 						g2 = it;
 				}
 				int max = maximum( m->get_intelligence(), g1->get_intelligence(), g2->get_intelligence());
-				if(max == m->get_intelligence() && m->get_budget() > budget && m->get_commit_status() == false)
+				if(max == m->get_intelligence() && m->get_budget() >= budget && m->get_commit_status() == false)
 				{
+
 					m->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(m->getname(), c->getname()));
 				}
-				if(max == g1->get_intelligence() && g1->get_budget() > budget && g1->get_commit_status() == false)
+				if(max == g1->get_intelligence() && g1->get_budget() >= budget && g1->get_commit_status() == false)
 				{
 					g1->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g1->getname(), c->getname()));
 				}
-				if(max == g2->get_intelligence() && g2->get_budget() > budget && g2->get_commit_status() == false)
+				if(max == g2->get_intelligence() && g2->get_budget() >= budget && g2->get_commit_status() == false)
 				{
 					g2->set_commit_status(true);
 					c->set_commit_status(true);
 					couples.push_back(make_pair(g2->getname(), c->getname()));
 				}
-			}
+			}	
 		}
 	}
 }
