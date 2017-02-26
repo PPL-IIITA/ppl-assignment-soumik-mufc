@@ -1,6 +1,4 @@
 /*
-
-
 type of boy = {1=Miser, 2=Generous, 3=Geek}
 type of girl = {1=Choosy, 2=Normal, 3=desperate}
 prefernce type of girl = {1=attraciveness, 2=rich, 3=intelligent}
@@ -61,25 +59,3 @@ int main()
 
 	return 0;
 }
-
-
-
-/*
-
-class A
-{
-	int num;
-	int getnum()
-	{
-	return num;
-	}
-	friend int add(A a, B b)
-	{
-		return A.getnum() + b.getbnum();
-	}
-}
-
-int add(A a, B b)
-	{
-		return A.getnum() + b.getbnum();
-	}
