@@ -19,7 +19,7 @@ ROLL No-IIT2015065 Section A
 ### Question 1
 > To create random girls and boys.
 ```
-g++ insert_data.cpp -o data
+g++ insert_data.cpp -o data -std=c++11
 ./data
 ```
 > To run question 1
@@ -32,7 +32,7 @@ g++ q1_main.cpp Helper.cpp Miser.cpp Generous.cpp Geeky.cpp Choosy.cpp Normal.cp
 ### Question 2
 > To create random gifts.
 ```
-g++ insert_gift_util.cpp -o data2
+g++ insert_gift_util.cpp -o data2 -std=c++11
 ./data2
 ```
 > To run question 2
