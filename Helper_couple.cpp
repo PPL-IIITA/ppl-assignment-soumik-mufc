@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include <cmath>
+//*Comparator function for Sorting gifts by price.
 bool gift_cmp(const gift::Gift &g1, const gift::Gift &g2)
 {
     return g1.get_price() < g2.get_price();
@@ -13,7 +14,7 @@ void give_gifts(std::vector <couple::Couple> &c)
     std::vector<gift::Gift> g;
     
 	std::ifstream input;
-    
+    //*Gifts exchange between girls and boys.
     input.open("Gifts.csv", std::ios::in);
     while(!input.eof()) {
         std::string name;
@@ -40,7 +41,7 @@ void give_gifts(std::vector <couple::Couple> &c)
         couple::Couple c1(name1,name2,at1,at2,in1,in2, budget1, budget2, type1, type2);
         c.push_back(c1);
     }
-    //Sorting gifts by price
+    //*Sorting gifts by price.
     sort(g.begin(), g.end(), gift_cmp);
     std::ofstream ofs;
     ofs.open("Gifts_log.txt");
@@ -64,6 +65,7 @@ void give_gifts(std::vector <couple::Couple> &c)
             //std::cout << date << cp.get_boy_name() << " " << cp.get_girl_name() << gft.get_name() << "\n";
             ofs << date << cp.get_boy_name() << " " << cp.get_girl_name() << " " <<  gft.get_name() << "\n";
         }
+        //* Calculating happiness level of each member of a couple.
         if(cp.get_girl_type() == 1)
         {
             cp.set_girl_happy(log(sum_price + lux_price - cp.get_girl_budget()));
@@ -88,7 +90,9 @@ void give_gifts(std::vector <couple::Couple> &c)
         {
             cp.set_boy_happy(cp.get_girl_intel());
         }
+        //* Set happiness level of couple.
         cp.set_happiness();
+        //*Set compatibility of couple.
         cp.set_compatibility();
 
     }

@@ -1,6 +1,6 @@
 #include "Miser.h"
 #include <string>
-
+//*Constructor for miser class.
 miser::Miser::Miser(std::string name, int attractiveness, int intelligence, int budget, int min_attr_req)
 {
 	this->name = name;

@@ -6,14 +6,17 @@ ROLL No-IIT2015065 Section A
 > The project now implements question 1 and 2.
 > All the source files are available.
 > The documentation for question1 is in Documentation_question1.pdf and for question2 is in Documentation_question2.pdf
+> Class Diagram is in UML_diagram.jpg file.
 
 ## Background
 > Project was made in Linux Ubuntu Distro.
 > Tools used: Command line tools and sublime text.
 > Documentation was made using Doxygen and Latex.
+> Class Diagram was made using STARUML.
 
 ## Prerequisite
-> C++11 Complier or above required.
+> GCC version 5.4.0 or above
+> C++ Complier must support c++11 or above.
 
 ## Building and running
 ### Question 1
@@ -43,9 +46,9 @@ g++ q2_main.cpp Helper_couple.cpp Gift.cpp Couple.cpp -std=c++11 -o q2
 > The gifts exchanges will be stored in Gifts_log.txt file.
 > user must ender the value of k to print k happiest and k most compatible couples.
 
-
+PS:
 Bugs in making couples(i.e paring of couples) have been removed.
 
-Classes include:Miser, Generous, Geeky, Normal, Choosy, Desperate, Helper, Helper_couple, Gift, Couple.
+Classes include: Miser, Generous, Geeky, Normal, Choosy, Desperate, Helper, Helper_couple, Gift, Couple.
 
-Class Diagram to be added when available. :p
+Class Diagram uploaded finally. :p

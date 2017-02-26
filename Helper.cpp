@@ -12,7 +12,7 @@ Bugs have benen removed.
 void scan_data(std::vector<miser::Miser>& vb1, std::vector<generous::Generous>& vb2, std::vector<geeky::Geeky>& vb3, std::vector<choosy::Choosy>& vg1, std::vector<normal::Normal>& vg2, std::vector<desperate::Desperate>& vg3)
 {
 	std::ifstream ifs;
-
+	//*Reading data from Boys csv file.
 	ifs.open("Boys.csv", std::ios::in);
 	while(!ifs.eof())
 	{
@@ -50,6 +50,7 @@ void scan_data(std::vector<miser::Miser>& vb1, std::vector<generous::Generous>& 
 	}
 	ifs.close();
 	ifs.open("Girls.csv", std::ios::in);
+	//*Reading data from Girls csv file.
 	while(!ifs.eof())
 	{
 		std::string name;
@@ -88,16 +89,6 @@ void scan_data(std::vector<miser::Miser>& vb1, std::vector<generous::Generous>& 
 	ifs.close();
 }
 
-// Tester display function.
-void display(const std::vector<miser::Miser> &vb1, const std::vector<generous::Generous> &vb2, const std::vector<geeky::Geeky> &vb3, const std::vector<choosy::Choosy> &vg1, const std::vector<normal::Normal> &vg2,const std::vector<desperate::Desperate> &vg3)
-
-{
-	for(auto it = vg1.begin(); it != vg1.end(); it++)
-	{
-		std::cout << it->getname() << " " << it->get_attractiveness() << " " << it->get_intelligence() << " " << it->get_budget() << " " << it->get_preference() << " " << it->get_commit_status() << std::endl;
-	}
-}
-
 int maximum( int a, int b, int c ) { return std::max( std::max(a,b), c ) ; }
 
 void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous> &vb2, std::vector<geeky::Geeky> &vb3, std::vector<choosy::Choosy> &vg1, std::vector<normal::Normal> &vg2, std::vector<desperate::Desperate> &vg3, std::vector <std::pair<std::string, std::string>> &couples)
@@ -117,12 +108,14 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 		int preference;
 		ifs >> name >> ignore >> attract >> ignore >> intelli >> ignore >> budget >>  ignore >>  type >> ignore >> preference;
 		
+		//* Allocating boys to every girl(as far as possible) as per the question.
 		int max_budget = 0, max_attract = 0,max_intel = 0;
 
 		std::vector<miser::Miser>::iterator m = vb1.begin();
 		std::vector<generous::Generous>::iterator g1 = vb2.begin();
 		std::vector<geeky::Geeky>::iterator g2 = vb3.begin();
 		int chosen = 0;
+
 		for(auto it = vb1.begin(); it != vb1.end(); it++)
 		{
 			if(it->get_commit_status() == false && it->get_budget() >= budget && attract >= it->get_min_attr_req())
@@ -195,6 +188,7 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 				}
 			}
 		}
+		
 		if(chosen == 1)
 		{
 			m->set_commit_status(true);
@@ -215,6 +209,7 @@ void make_couple(std::vector<miser::Miser> &vb1, std::vector<generous::Generous>
 
 void store_couples(std::vector <std::pair<std::string, std::string>> &couples)
 {
+	//*Store couples into Couples_log and couple_log_2 txt files.
 	std::ofstream ofs1, ofs2;
 	ofs1.open("Couples_log.txt", std::ios::out);
 	ofs2.open("Couple_log_2.txt", std::ios::out);
