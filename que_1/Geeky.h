@@ -1,40 +1,39 @@
-// Header file for ChoosyGirl class
+// Header file for GeekyBoy class
 
 /*
-ChoosyGirl Header file.
-Contains info about each ChoosyGirl.
-The attributes: name, attractiveness, intelligence, budget, commit_status
+GeekyBoy Header Class.
+Contains info about each boy.
+The attributes: name, attractiveness, intelligence, budget, minimum attractiveness required, commit_status
 The functions are: 
 */
 
 
 
-#ifndef CHOOSY_H_
-#define CHOOSY_H_
+#ifndef GEEKY_H_
+#define GEEKY_H_
 
 #include <string>
 
-namespace choosy
+namespace geeky
 {
-	class Choosy
+	class Geeky
 	{
-
 	private:
 		std::string name;
 		int attractiveness;
 		int intelligence;
 		int budget;
+		int min_attr_req;
 		bool commit_status;
-		int preference;
 	public:
-		Choosy(std::string, int, int, int, int);
+		Geeky(std::string, int, int, int, int);
 		std::string getname() const;
 		int get_attractiveness() const;
 		int get_intelligence() const;
 		int get_budget() const;
+		int get_min_attr_req() const;
 		bool get_commit_status() const;
 		void set_commit_status(bool);
-		int get_preference() const;
 	};
 }
 

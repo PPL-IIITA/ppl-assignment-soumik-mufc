@@ -1,24 +1,23 @@
-// Header file for ChoosyGirl class
+// Header file for NormalGirl class
 
 /*
-ChoosyGirl Header file.
-Contains info about each ChoosyGirl.
+NormalGirl Header file.
+Contains info about each NormalGirl.
 The attributes: name, attractiveness, intelligence, budget, commit_status
 The functions are: 
 */
 
 
 
-#ifndef CHOOSY_H_
-#define CHOOSY_H_
+#ifndef NORMAL_H_
+#define NORMAL_H_
 
 #include <string>
 
-namespace choosy
+namespace normal
 {
-	class Choosy
+	class Normal
 	{
-
 	private:
 		std::string name;
 		int attractiveness;
@@ -27,7 +26,7 @@ namespace choosy
 		bool commit_status;
 		int preference;
 	public:
-		Choosy(std::string, int, int, int, int);
+		Normal(std::string, int, int, int, int);
 		std::string getname() const;
 		int get_attractiveness() const;
 		int get_intelligence() const;
