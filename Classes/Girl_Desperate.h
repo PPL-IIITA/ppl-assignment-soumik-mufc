@@ -8,7 +8,7 @@ namespace data
 	class Desperate:public Girl
 	{
 	public:
-		Desperate(std::string , int, int, int, int);
+		Desperate(std::string , int, int, int, int, int);
 	};
 }
 

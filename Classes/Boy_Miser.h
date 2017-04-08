@@ -8,7 +8,7 @@ namespace data
 	class Miser: public Boy
 	{
 	public:
-		Miser(std::string , int, int, int, int);
+		Miser(std::string , int, int, int, int, int);
 	};
 }
 #endif

@@ -8,7 +8,7 @@ namespace data
 	class Generous:public Boy
 	{
 	public:
-		Generous(std::string , int, int, int, int);
+		Generous(std::string , int, int, int, int, int);
 	};
 }
 

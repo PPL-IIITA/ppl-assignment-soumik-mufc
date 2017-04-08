@@ -8,7 +8,7 @@ namespace data
 	class Normal:public Girl
 	{
 	public:
-		Normal(std::string , int, int, int, int);
+		Normal(std::string , int, int, int, int, int);
 	};
 }
 

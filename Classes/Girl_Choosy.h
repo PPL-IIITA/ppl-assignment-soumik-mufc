@@ -8,7 +8,7 @@ namespace data
 	class Choosy:public Girl
 	{
 	public:
-		Choosy(std::string , int, int, int, int);
+		Choosy(std::string , int, int, int, int, int);
 	};
 }
 

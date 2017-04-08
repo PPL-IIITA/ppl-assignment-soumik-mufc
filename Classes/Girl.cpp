@@ -1,7 +1,7 @@
 #include "Girl.h"
 #include <string>
 
-data::Girl::Girl(std::string name, int attractiveness, int intelligence, int budget, int preference)
+data::Girl::Girl(std::string name, int attractiveness, int intelligence, int budget, int preference, int type)
 {
 	this->name = name;
 	this->attractiveness = attractiveness;
@@ -10,6 +10,7 @@ data::Girl::Girl(std::string name, int attractiveness, int intelligence, int bud
 	this->preference = preference;
 	this->happiness = 0;
 	this->commit_status = false;
+	this->type = type;
 }
 
 std::string data::Girl::get_name() const
@@ -50,4 +51,14 @@ bool data::Girl::get_commit_status() const
 void data::Girl::set_commit_status(bool stat)
 {
 	this->commit_status = stat;
+}
+
+int data::Girl::get_type() const
+{
+	return type;
+}
+
+void data::Girl::set_happiness(double h)
+{
+	happiness = h;
 }

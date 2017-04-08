@@ -3,6 +3,7 @@
 #include <vector>
 #include "Boy.h"
 #include "Girl.h"
+#include "Couple.h"
 #include "Boy_Geeky.h"
 #include "Boy_Generous.h"
 #include "Boy_Miser.h"
@@ -14,7 +15,8 @@ namespace utility
 {
 	void read_girl_data(std::vector <data::Girl> &g);
 	void read_boy_data(std::vector <data::Boy> &b);
-
+	void store_couples(std::vector <data::Couple> &couples);
+	int stoint(const char *str);
 }
 
 

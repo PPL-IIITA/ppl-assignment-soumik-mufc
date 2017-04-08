@@ -8,7 +8,7 @@ namespace data
 	class Geeky: public Boy
 	{
 	public:
-		Geeky(std::string , int, int, int, int);
+		Geeky(std::string , int, int, int, int, int);
 	};
 }
 
