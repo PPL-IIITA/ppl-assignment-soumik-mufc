@@ -4,6 +4,9 @@ type of girl = {1=Choosy, 2=Normal, 3=desperate}
 prefernce type of girl = {1=attraciveness, 2=rich, 3=intelligent}
 */
 //* Inserting datas in girls and boys csv files.
+
+// Boy : name , attractiveness, intel, budget, attr_req, type_of_boy
+// Girl: name, attractiveness, intel, budget, type_ofGirl, prefernce type for boy
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
