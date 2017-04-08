@@ -17,6 +17,7 @@ namespace utility
 	void read_boy_data(std::vector <data::Boy> &b);
 	void store_couples(std::vector <data::Couple> &couples);
 	int stoint(const char *str);
+	void modified_store_couples(std::vector <data::Couple> &couples);
 }
 
 

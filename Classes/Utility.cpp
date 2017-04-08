@@ -122,3 +122,26 @@ int utility::stoint(const char *str)
 	}
 	return num;
 }
+
+void utility::modified_store_couples(std::vector <data::Couple> &couples)
+{
+	std::ofstream ofs1, ofs2;
+	ofs1.open("../data_files/modified_Couples_log.txt", std::ios::out); //* TimeStamp : Boy : Girl
+	ofs2.open("../data_files/modified_Couple_data.txt", std::ios::out); 
+	//* b_name, g_name, b_attr, g_attr, b_intel, g_intel, b_budget, g_budget, b_type, g_type
+
+
+	for(auto it = couples.begin(); it != couples.end(); it++)
+	{
+		time_t now = time(0);
+		char * date = ctime(&now);
+		//std::cout << it->boy.get_name() << " " << it->girl.get_name() << "\n";
+		ofs1 << date << " " << it->boy.get_name() << " " << it->girl.get_name() << "\n";
+		
+		ofs2 << it->boy.get_name() << " " << it->girl.get_name() << " " << it->boy.get_attractiveness() << " " << it->girl.get_attractiveness() << " " << it->boy.get_intelligence() << " " << it->girl.get_intelligence() << " " << it->boy.get_budget() << " " << it->girl.get_budget() << " " << it->boy.get_type() << " " << it->girl.get_type() << "\n" ;
+
+	}
+	
+	ofs1.close();
+	ofs2.close();
+}

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <ctime>
 #include <cmath>
+#include <map>
 bool gift_cmp(const data::Gift &g1, const data::Gift &g2)
 {
     return g1.get_price() < g2.get_price();
@@ -81,19 +82,6 @@ void algorithm::distribute_gifts(std::vector <data::Couple> &c)
 
     input.close();
 
-    /*
-    input.open("../data_files/Couple_data.txt", std::ios::in);
-    std::string name1;
-    while(input >> name1) {
-        std::string name2;
-        int at1, at2;
-        int in1, in2;
-        int budget1, budget2;
-        int type1, type2;
-        input >> name2 >> at1 >> at2 >> in1 >> in2 >> budget1 >> budget2 >> type1 >> type2;
-        couple::Couple c1(name1,name2,at1,at2,in1,in2, budget1, budget2, type1, type2);
-        c.push_back(c1);
-    }*/
     //*Sorting gifts by price.
     sort(g.begin(), g.end(), gift_cmp);
     std::ofstream ofs;
@@ -150,4 +138,115 @@ void algorithm::distribute_gifts(std::vector <data::Couple> &c)
 
     }
     ofs.close();
+}
+
+void algorithm::break_up(std::vector <data::Couple> &c, std::vector <data::Boy> &b, std::vector<data::Girl> &g, int k)
+{
+    std::map <std::string, std::string> broken_couples;  //* broken_couples[girl_name] = boy_name
+
+    for(int i = 0; i < k; i++)
+        broken_couples[c[i].girl.get_name()] = c[i].boy.get_name();
+
+
+    for(auto it1 = broken_couples.begin(); it1 != broken_couples.end(); it1++)
+    {
+        int index = 0;
+        for(auto it2 = c.begin(); it2 != c.end(); it2++)
+        {
+            if(it2->boy.get_name() == it1->second)
+                break;
+            index++;
+        }
+        c.erase(c.begin() + index);
+    }
+    /*for(auto it = c.begin(); it != c.end(); it++)
+    {
+        std::cout << it->boy.get_name() << " " << it->girl.get_name() << std::endl;
+    }*/
+
+    for(auto it1 = broken_couples.begin(); it1 != broken_couples.end(); it1++)
+    {
+        for(auto it2 = b.begin(); it2 != b.end(); it2++)
+        {
+            if(it2->get_name() == it1->second)
+            {
+                it2->set_commit_status(false);
+                break;
+            }
+        }
+    }
+
+    for(auto it1 = broken_couples.begin(); it1 != broken_couples.end(); it1++)
+    {
+        for(auto it2 = g.begin(); it2 != g.end(); it2++)
+        {
+            if(it2->get_name() == it1->first)
+            {
+                it2->set_commit_status(false);
+                break;
+            }
+            
+        }
+    }
+
+   /* int count = 0;
+    for(auto it = b.begin(); it != b.end(); it++)
+    {
+        if(it->get_commit_status() == true)
+            count++;
+        std::cout << it->get_commit_status() << std::endl;
+    }
+    std::cout << count;*/
+    /*for(auto it = broken_couples.begin(); it != broken_couples.end(); it++)
+        std::cout << it->first << " " << it->second << std::endl;*/
+
+
+
+    int count = 0;
+    for(auto girl_it = g.begin(); girl_it != g.end(); girl_it++)
+    {
+        int max_budget = 0;
+        int max_attract = 0;
+        int max_intel = 0;
+        std::vector<data::Boy>::iterator m = b.begin();
+        if(girl_it->get_commit_status() == false)
+        {
+        for(auto it = b.begin(); it != b.end(); it++)
+        {
+            if(it->get_commit_status() == false && it->get_budget() >= girl_it->get_budget() && girl_it->get_attractiveness() >= it->get_min_attr_req() && broken_couples[girl_it->get_name()] != it->get_name())
+            {
+                if(girl_it->get_preference() == 1 && max_attract < it->get_attractiveness())
+                {
+                    m = it;
+                    max_attract = it->get_attractiveness();
+                }
+                else if(girl_it->get_preference() == 2 && max_budget < it->get_budget())
+                {
+                    m = it;
+                    max_budget = it->get_budget();
+                }
+                else if(girl_it->get_preference() == 3 && max_intel < it->get_intelligence())
+                {
+                    m = it;
+                    max_intel = it->get_intelligence();
+                }
+            }
+        }
+        if(m != b.begin())
+        {
+            m->set_commit_status(true);
+            girl_it->set_commit_status(true);
+            data::Couple cp(*m, *girl_it);
+            c.push_back(cp);
+        }
+        else if(count == 0)
+        {
+            m->set_commit_status(true);
+            girl_it->set_commit_status(true);
+            data::Couple cp(*m, *girl_it);
+            c.push_back(cp);
+            count++;
+        }
+        }
+    }
 }
