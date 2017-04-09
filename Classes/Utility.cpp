@@ -93,8 +93,8 @@ void utility::read_boy_data(std::vector <data::Boy> &b)
 void utility::store_couples(std::vector <data::Couple> &couples)
 {
 	std::ofstream ofs1, ofs2;
-	ofs1.open("../data_files/Couples_log.txt", std::ios::out); //* TimeStamp : Boy : Girl
-	ofs2.open("../data_files/Couple_data.txt", std::ios::out); 
+	ofs1.open("../log_files/Couples_log.txt", std::ios::out); //* TimeStamp : Boy : Girl
+	ofs2.open("../log_files/Couple_data.txt", std::ios::out); 
 	//* b_name, g_name, b_attr, g_attr, b_intel, g_intel, b_budget, g_budget, b_type, g_type
 
 
@@ -126,8 +126,8 @@ int utility::stoint(const char *str)
 void utility::modified_store_couples(std::vector <data::Couple> &couples)
 {
 	std::ofstream ofs1, ofs2;
-	ofs1.open("../data_files/modified_Couples_log.txt", std::ios::out); //* TimeStamp : Boy : Girl
-	ofs2.open("../data_files/modified_Couple_data.txt", std::ios::out); 
+	ofs1.open("../log_files/modified_Couples_log.txt", std::ios::out); //* TimeStamp : Boy : Girl
+	ofs2.open("../log_files/modified_Couple_data.txt", std::ios::out); 
 	//* b_name, g_name, b_attr, g_attr, b_intel, g_intel, b_budget, g_budget, b_type, g_type
 
 

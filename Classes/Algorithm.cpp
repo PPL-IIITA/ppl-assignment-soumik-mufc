@@ -9,6 +9,15 @@ bool gift_cmp(const data::Gift &g1, const data::Gift &g2)
 {
     return g1.get_price() < g2.get_price();
 }
+
+bool girl_cmp_maint(const data::Girl &g1, const data::Girl &g2)
+{
+    return g1.get_budget() < g2.get_budget();
+}
+bool boy_cmp_attract(const data::Boy &b1, const data::Boy &b2)
+{
+    return b1.get_attractiveness() < b2.get_attractiveness();
+}
 void algorithm::make_couples(std::vector <data::Boy> &b, std::vector<data::Girl> &g, std::vector <data::Couple> &couples)
 {
 	
@@ -85,7 +94,7 @@ void algorithm::distribute_gifts(std::vector <data::Couple> &c)
     //*Sorting gifts by price.
     sort(g.begin(), g.end(), gift_cmp);
     std::ofstream ofs;
-    ofs.open("Gifts_log.txt");
+    ofs.open("../log_files/Gifts_log.txt");
     for(auto &cp : c)
     {
         int max = cp.girl.get_budget();
@@ -249,4 +258,93 @@ void algorithm::break_up(std::vector <data::Couple> &c, std::vector <data::Boy> 
         }
         }
     }
+}
+
+void algorithm::modified_make_couples(std::vector <data::Boy> &b, std::vector<data::Girl> &g, std::vector <data::Couple> &couples)
+{
+    std::sort(g.begin(), g.end(), girl_cmp_maint);
+    std::sort(b.begin(), b.end(), boy_cmp_attract);
+
+    int count = 0;
+
+    while(true)
+    {
+        bool flag = false;
+        if(count % 2 == 0)
+        {
+            for(auto girl_it = g.begin(); girl_it != g.end(); girl_it++)
+            {
+                if(girl_it->get_commit_status() == true)
+                    continue;
+                int max_budget = 0;
+                int max_attract = 0;
+                int max_intel = 0;
+                std::vector<data::Boy>::iterator m = b.begin();
+                for(auto it = b.begin(); it != b.end(); it++)
+                {
+                    if(it->get_commit_status() == false && it->get_budget() >= girl_it->get_budget() && girl_it->get_attractiveness() >= it->get_min_attr_req())
+                    {
+                        if(girl_it->get_preference() == 1 && max_attract < it->get_attractiveness())
+                        {
+                            m = it;
+                            max_attract = it->get_attractiveness();
+                        }
+                        else if(girl_it->get_preference() == 2 && max_budget < it->get_budget())
+                        {
+                            m = it;
+                            max_budget = it->get_budget();
+                        }
+                        else if(girl_it->get_preference() == 3 && max_intel < it->get_intelligence())
+                        {
+                            m = it;
+                            max_intel = it->get_intelligence();
+                        }
+                    }
+                }
+                if(m->get_commit_status() == false)
+                {
+                    m->set_commit_status(true);
+                    girl_it->set_commit_status(true);
+                    data::Couple c(*m, *girl_it);
+                    couples.push_back(c);
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for(auto boy_it = b.begin(); boy_it != b.end(); boy_it++)
+            {
+                if(boy_it->get_commit_status() == true)
+                    continue;
+                int max_attract = 0;
+                std::vector<data::Girl>::iterator m = g.begin();
+                for(auto it = g.begin(); it != g.end(); it++)
+                {
+                    if(it->get_commit_status() == false && it->get_budget() <= boy_it->get_budget() && it->get_attractiveness() >= boy_it->get_min_attr_req())
+                    {
+                        if(it->get_attractiveness() > max_attract)
+                        {
+                            max_attract = it->get_attractiveness();
+                            m = it;
+                        }
+                    }
+                }
+                if(m->get_commit_status() == false)
+                {
+                    m->set_commit_status(true);
+                    boy_it->set_commit_status(true);
+                    data::Couple c(*boy_it, *m);
+                    couples.push_back(c);
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        if(flag == false)
+            break;
+    }
+
+
 }
