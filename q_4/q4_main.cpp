@@ -14,6 +14,8 @@ bool girl_name_cmp(const data::Couple &c1, const data::Couple &c2)
 
 int main(int argc, char const *argv[])
 {
+
+	//* 1 command-line-arguement : To break up k least happy couples.
 	std::vector <data::Girl> g;
 	std::vector <data::Boy> b;
 	std::vector <data::Couple> couples;
@@ -28,11 +30,11 @@ int main(int argc, char const *argv[])
 
 	int k = utility::stoint(argv[1]);
 
-	//sort(couples.begin(), couples.end(), happy_cmp);
+	sort(couples.begin(), couples.end(), happy_cmp);
 
 	algorithm::break_up(couples, b, g, k);
 
-	sort(couples.begin(), couples.end(), girl_name_cmp);
+	//sort(couples.begin(), couples.end(), girl_name_cmp);
 	utility::modified_store_couples(couples);
 
 	return 0;
