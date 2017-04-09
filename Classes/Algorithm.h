@@ -16,6 +16,8 @@ namespace algorithm
 
 	void break_up(std::vector <data::Couple> &c, std::vector <data::Boy> &b, std::vector<data::Girl> &g, int k);
 	void modified_make_couples(std::vector <data::Boy> &b, std::vector <data::Girl> &g, std::vector <data::Couple> &couples);
+
+	void modified_break_up(std::vector <data::Couple> &c, std::vector <data::Boy> &b, std::vector<data::Girl> &g, int t);
 }
 
 #endif
