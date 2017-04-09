@@ -18,6 +18,10 @@ bool boy_cmp_attract(const data::Boy &b1, const data::Boy &b2)
 {
     return b1.get_attractiveness() < b2.get_attractiveness();
 }
+bool cmp_boy_name(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b )
+{
+    return a.first < b.first;
+}
 void algorithm::make_couples(std::vector <data::Boy> &b, std::vector<data::Girl> &g, std::vector <data::Couple> &couples)
 {
 	
@@ -455,4 +459,73 @@ void algorithm::modified_break_up(std::vector <data::Couple> &c, std::vector <da
         }
 
     }
+}
+
+void algorithm::find_girlfriend(std::vector <std::pair <std::string , std::string> > &cp, std::vector <std::string> &b_input, int choice)
+{
+    std::vector <std::pair <std::string, std::string> > ans;
+    
+    if(choice == 1)
+    {
+        for(auto &it : b_input)
+        {
+            bool flag = false;
+            for(auto &it2 : cp)
+            {
+                if(it == it2.first)
+                {
+                    flag = true;
+                    ans.push_back(make_pair(it, it2.first));
+                    break;
+                }
+            }
+            if(!flag)
+                ans.push_back(make_pair(it, "No girlfriend"));
+        }
+    }
+
+    else if(choice == 2)
+    {
+       for(auto &it : b_input)
+        {
+            bool flag = false;
+            for(auto &it2 : cp)
+            {
+                if(it == it2.first)
+                {
+                    flag = true;
+                    ans.push_back(make_pair(it, it2.first));
+                    break;
+                }
+            }
+            if(!flag)
+                ans.push_back(make_pair(it, "No girlfriend"));
+        }
+        
+    }
+
+    else if(choice == 3)
+    {
+        std::map <std::string ,std::string> mp;
+
+        for(auto &it : cp)
+            mp[it.first] = it.second;
+
+        for(auto &b_name : b_input)
+        {
+            if(mp.find(b_name) == mp.end())
+                ans.push_back(make_pair(b_name, "No girlfriend"));
+            else
+                ans.push_back(make_pair(b_name, mp[b_name]));
+        }
+    }
+
+    std::ofstream ofs;
+    ofs.open("ouput_q7.txt", std::ios::out);
+
+    for(auto &it : ans)
+    {
+        ofs << it.first << " " << it.second << std::endl;
+    }
+    ofs.close();
 }

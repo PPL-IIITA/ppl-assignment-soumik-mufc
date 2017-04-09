@@ -145,3 +145,28 @@ void utility::modified_store_couples(std::vector <data::Couple> &couples)
 	ofs1.close();
 	ofs2.close();
 }
+
+void utility::read_list_of_boys(std::vector <std::string> &b_input)
+{
+	std::ifstream ifs;
+	ifs.open("list_of_boys.txt", std::ios::in);
+
+	while(!ifs.eof())
+	{
+		std::string name;
+		ifs >> name;
+		b_input.push_back(name);
+	}
+
+	ifs.close();
+}
+
+void utility::read_couples(std::vector <data::Couple> &couples, std::vector <std::pair <std::string , std::string> > &cp)
+{
+	for(auto &it: couples)
+	{
+		std::string boy_name = it.boy.get_name();
+		std::string girl_name = it.girl.get_name();
+		cp.push_back(make_pair(boy_name, girl_name));
+	}
+}

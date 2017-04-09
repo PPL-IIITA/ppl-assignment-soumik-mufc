@@ -18,6 +18,8 @@ namespace utility
 	void store_couples(std::vector <data::Couple> &couples);
 	int stoint(const char *str);
 	void modified_store_couples(std::vector <data::Couple> &couples);
+	void read_list_of_boys(std::vector <std::string> &b_input);
+	void read_couples(std::vector <data::Couple> &couples, std::vector <std::pair <std::string , std::string> > &cp);
 }
 
 
