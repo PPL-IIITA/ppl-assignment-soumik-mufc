@@ -10,6 +10,7 @@ bool happy_cmp(const data::Couple &c1, const data::Couple &c2) { return c1.get_h
 bool compat_cmp(const data::Couple &c1, const data::Couple &c2) { return c1.get_compatibility() < c2.get_compatibility();}
 int main(int argc, char const *argv[])
 {
+	//* 1 command-line-arguement : To show k most happy and compatible couples.
 	std::vector <data::Girl> g;
 	std::vector <data::Boy> b;
 	std::vector <data::Couple> couples;
